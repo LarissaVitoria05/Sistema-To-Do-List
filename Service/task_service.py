@@ -15,28 +15,28 @@ def ListTask():
     res = task_repository.ListTask()
     if not res:
         return {"codigo": 404, "mensagem": "Nenhuma tarefa encontrada"}
-    return  res
+    return   {"codigo": 201, "tarefa": res}
 
 def GetById(id):
     if not id:
-        return {"codigo": 404, "mensagem": "Id necessario"}
+        return {"codigo": 401, "mensagem": "Id necessario"}
     res = task_repository.GetByIDTask(id)
     if not res:
         return {"codigo": 404, "mensagem": "Nenhuma tarefa encontrada"}
-    return   res
+    return  {"codigo": 201, "tarefa": res}
 
 def UpdateTask(id):
     if not id:
-        return {"codigo": 404, "mensagem": "Id necessario"}
+        return {"codigo": 401, "mensagem": "Id necessario"}
     res = task_repository.UpdateTask(id)
     if not res:
-        return {"codigo": 404, "mensagem": "Tarefa não atualizada"}
-    return   res    
+        return {"codigo": 400, "mensagem": "Tarefa não atualizada"}
+    return   {"codigo": 201, "tarefa": res}
 
 def DeleteTask(id):
     if not id:
-        return {"codigo": 404, "mensagem": "Id necessario"}
+        return {"codigo": 401, "mensagem": "Id necessario"}
     res = task_repository.DeleteTask(id)
     if not res:
-        return {"codigo": 404, "mensagem": "Tarefa não foi atualizada"}
-    return   res    
+        return {"codigo": 400, "mensagem": "Tarefa não foi atualizada"}
+    return   {"codigo": 201, "tarefa": res} 
