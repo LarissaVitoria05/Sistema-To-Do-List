@@ -9,13 +9,13 @@ def CreateService(titulo, descricao):
     res = task_repository.CreateRepository(titulo, descricao)
     if not res:
             return {"codigo":404, "mensagem": "Tarefa não foi criada"}
-    return {"codigo": 201, "mensagem": "Tarefa criada com sucesso", "resultado": res}
+    return res
 
 def ListTask():
     res = task_repository.ListTask()
     if not res:
         return {"codigo": 404, "mensagem": "Nenhuma tarefa encontrada"}
-    return {"codigo": 200, "tarefas": res}
+    return  res
 
 def GetById(id):
     if not id:
@@ -23,5 +23,5 @@ def GetById(id):
     res = task_repository.GetByID(id)
     if not res:
         return {"codigo": 404, "mensagem": "Nenhuma tarefa encontrada"}
-    return  {"codigo": 200, "tarefas": res}
+    return   res
          
