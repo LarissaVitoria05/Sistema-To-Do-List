@@ -7,15 +7,18 @@ def CreateTask(titulo, descricao):
     res = db.create_task(titulo, descricao)
     return res
 
-
 def ListTask():
     res = db.list_tasks()
     return res
 
-def GetByIDTask(task_id):
-    res = db.get_task(task_id)
+def GetByIDTask(id):
+    res = db.get_task(id)
     return res
 
 def  UpdateTask(id):
     res = db.update_task(id, "completo")
+    return res
+
+def DeleteTask(id):
+    res = db.delete_task(id)
     return res

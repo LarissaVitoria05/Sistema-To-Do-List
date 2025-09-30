@@ -32,3 +32,11 @@ def UpdateTask(id):
     if not res:
         return {"codigo": 404, "mensagem": "Tarefa não atualizada"}
     return   res    
+
+def DeleteTask(id):
+    if not id:
+        return {"codigo": 404, "mensagem": "Id necessario"}
+    res = task_repository.DeleteTask(id)
+    if not res:
+        return {"codigo": 404, "mensagem": "Tarefa não foi atualizada"}
+    return   res    

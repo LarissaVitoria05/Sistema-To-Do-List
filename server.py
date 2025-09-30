@@ -13,6 +13,10 @@ class SimpleServer(BaseHTTPRequestHandler):
     def do_PATCH(self):
             resultado = task_controller.UpdateTask(self.path)
             self._send_response(resultado)
+            
+    def do_DELETE(self):
+            resultado = task_controller.DeleteTask(self.path)
+            self._send_response(resultado)
 
     def do_GET(self):
         if self.path.strip() == "/list":

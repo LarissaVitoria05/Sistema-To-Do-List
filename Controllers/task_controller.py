@@ -6,7 +6,9 @@ def CreateTask(path, body):
         dados = json.loads(body)
         titulo = dados.get("titulo")
         descricao = dados.get("descricao")
-        return task_service.CreateService(titulo, descricao)
+        task_service.CreateService(titulo, descricao)
+        res = task_service.ListTask()
+        return {"codigo": 200, "tarefas": res} 
     else:
         return {"codigo": 404, "mensagem": "Rota não encontrada"}
     
@@ -33,8 +35,18 @@ def UpdateTask(path):
     if path.startswith("/update/"):             
             task_id = int(path.split("/")[-1])
             task_service.UpdateTask(task_id)
-            tarefaUpdate  = task_service.GetById(task_id)
-            return {"codigo": 200, "tarefa": tarefaUpdate}
+            res  = task_service.GetById(task_id)
+            return {"codigo": 200, "tarefa": res}
+    else:
+            return {"codigo": 404, "mensagem": "Rota não encontrada"}
+       
+def DeleteTask(path):
+ 
+    if path.startswith("/delete/"):             
+            task_id = int(path.split("/")[-1])
+            task_service.DeleteTask(task_id)
+            res  = task_service.ListTask()
+            return {"codigo": 200, "tarefa": res}
     else:
             return {"codigo": 404, "mensagem": "Rota não encontrada"}
        
