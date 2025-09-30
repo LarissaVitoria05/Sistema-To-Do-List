@@ -10,6 +10,10 @@ class SimpleServer(BaseHTTPRequestHandler):
         resultado = task_controller.CreateTask(self.path, body)
         self._send_response(resultado)
 
+    def do_PATCH(self):
+            resultado = task_controller.UpdateTask(self.path)
+            self._send_response(resultado)
+
     def do_GET(self):
         if self.path.strip() == "/list":
             resultado = task_controller.ListTask(self.path)
