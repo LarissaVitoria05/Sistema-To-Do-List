@@ -13,16 +13,16 @@ class SimpleServer(BaseHTTPRequestHandler):
     def do_PATCH(self):
             resultado = task_controller.UpdateTask(self.path)
             self._send_response(resultado)
-            
+
     def do_DELETE(self):
             resultado = task_controller.DeleteTask(self.path)
             self._send_response(resultado)
 
     def do_GET(self):
-        if self.path.strip() == "/list":
+        if self.path.strip() == "/tasks":
             resultado = task_controller.ListTask(self.path)
             self._send_response(resultado)
-        elif self.path.startswith("/list-by-id/"):
+        elif self.path.startswith("/tasks/"):
             resultado = task_controller.GetTaskById(self.path)
             self._send_response(resultado)
         else:
