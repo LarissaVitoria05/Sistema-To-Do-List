@@ -13,6 +13,16 @@ class SimpleServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(resultado).encode())
 
+    def do_GET(self):
+        
+        resultado = task_controller.ListTask(self.path)
+       
+
+        self.send_response(resultado.get("codigo", 500))  # caso não tenha código, usa 500
+        self.send_header('Content-Type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps(resultado).encode())
+
 def run_server():
     server_address = ('', 8000)
     httpd = HTTPServer(server_address, SimpleServer)
